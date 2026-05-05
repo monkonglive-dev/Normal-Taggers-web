@@ -1,58 +1,1289 @@
-<!--CHANGE THE COLOR TO A HEX COLOR OF YOUR CHOICE-->
-<!--credits to rayden (dont remove)-->
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Normal Taggers</title>
+    <title>Rio Java Coffee House | Specialty Coffee in Roseville, CA</title>
+    <meta name="description" content="Experience the best specialty coffee in Roseville at Rio Java Coffee House. Your morning ritual, elevated with artisanal craft and local community.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CoffeeShop",
+      "name": "Rio Java Coffee House",
+      "image": "https://riojava.com/images/hero.jpg",
+      "@id": "",
+      "url": "https://riojava.com",
+      "telephone": "+19167735282",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "956 Oak Ln",
+        "addressLocality": "Roseville",
+        "addressRegion": "CA",
+        "postalCode": "95678",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 38.7495,
+        "longitude": -121.2850
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "05:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Saturday",
+            "Sunday"
+          ],
+          "opens": "06:00",
+          "closes": "16:00"
+        }
+      ],
+      "sameAs": [
+        "https://www.facebook.com/RioJavaCoffeeHouse",
+        "https://www.instagram.com/riojavacoffee"
+      ]
+    }
+    </script>
+
     <style>
+        :root {
+            --primary-espresso: #3C2415;
+            --secondary-latte: #F5E6D3;
+            --accent-copper: #B87333;
+            --bg-linen: #FDFBF7;
+            --text-primary: #2D2D2D;
+            --text-secondary: #6B5B4F;
+            --cta-caramel: #C4824A;
+            --cta-hover: #2A1A0D;
+            --success-sage: #7A9E7E;
+            --white: #FFFFFF;
+            
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            
+            --transition: 0.3s ease;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-color: #000;
-            color: #007474;
-            font-family: Arial, sans-serif;
+            font-family: var(--font-body);
+            color: var(--text-primary);
+            background-color: var(--bg-linen);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 48px 0;
+            }
+        }
+
+        /* --- Components --- */
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            border: none;
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--cta-caramel);
+            color: var(--white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--cta-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--primary-espresso);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            border: 2px solid var(--primary-espresso);
+            color: var(--primary-espresso);
+        }
+
+        .btn-ghost:hover {
+            background-color: var(--primary-espresso);
+            color: var(--white);
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            background-color: var(--bg-linen);
+            padding: 12px 0;
+            box-shadow: var(--shadow-sm);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-espresso);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--cta-caramel);
+        }
+
+        .nav-cta {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+        }
+
+        /* --- Mobile Menu Overlay --- */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--white);
+            z-index: 1100;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            gap: 32px;
+            transform: translateX(100%);
+            transition: 0.4s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-menu a {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            cursor: pointer;
+        }
+
+        /* --- Hero --- */
+        .hero {
             height: 100vh;
-            margin: 0;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 24px;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 24px;
+            animation: fadeUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            animation: fadeUp 1s ease-out 0.2s both;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            animation: fadeUp 1s ease-out 0.4s both;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+            40% {transform: translateY(-10px) translateX(-50%);}
+            60% {transform: translateY(-5px) translateX(-50%);}
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .hero-btns { flex-direction: column; }
+        }
+
+        /* --- Social Proof Bar --- */
+        .social-proof {
+            background-color: var(--primary-espresso);
+            color: var(--secondary-latte);
+            padding: 16px 0;
             text-align: center;
         }
-        .bio-title {
-            font-size: 50px;
-            font-weight: bold;
-            margin-bottom: 20px;
+
+        .social-proof .container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
         }
-        .bio-text {
-            font-size: 36px;
+
+        .proof-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
         }
-        .example-button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #000;
-            background-color: #007474;
+
+        /* --- Menu --- */
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 48px;
+            border-bottom: 1px solid #E0D5C7;
+        }
+
+        .tab-btn {
+            background: none;
             border: none;
-            border-radius: 5px;
-            text-decoration: none;
+            font-family: var(--font-body);
+            font-size: 1.125rem;
+            font-weight: 600;
+            padding: 16px 8px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: var(--cta-caramel);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--cta-caramel);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .menu-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .menu-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .menu-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.4s ease;
+        }
+
+        .menu-card:hover .menu-img img {
+            transform: scale(1.05);
+        }
+
+        .menu-info {
+            padding: 24px;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .menu-header h3 {
+            font-size: 1.25rem;
+        }
+
+        .menu-price {
+            font-weight: 700;
+            color: var(--accent-copper);
+        }
+
+        .menu-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* --- About --- */
+        .about-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 3rem;
+            margin-bottom: 24px;
+        }
+
+        .about-content p {
+            margin-bottom: 24px;
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+        }
+
+        .about-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        @media (max-width: 992px) {
+            .about-split {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+        }
+
+        /* --- Reviews --- */
+        .reviews {
+            background-color: var(--secondary-latte);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .reviews-container {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            padding-bottom: 20px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .reviews-container::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        .review-card {
+            background-color: var(--white);
+            padding: 32px;
+            border-radius: 12px;
+            min-width: 350px;
+            flex: 0 0 calc(33.333% - 16px);
+            scroll-snap-align: start;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stars {
+            color: var(--accent-copper);
+            margin-bottom: 16px;
+            display: flex;
+            gap: 4px;
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .reviewer-info h4 {
+            font-weight: 600;
+        }
+
+        .reviewer-info span {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 992px) {
+            .review-card {
+                flex: 0 0 calc(50% - 12px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .review-card {
+                flex: 0 0 100%;
+            }
+        }
+
+        /* --- Location --- */
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 48px;
+            align-items: flex-start;
+        }
+
+        .map-container {
+            border-radius: 12px;
+            overflow: hidden;
+            height: 450px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .location-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 32px;
+        }
+
+        .info-group {
+            margin-bottom: 24px;
+            display: flex;
+            gap: 16px;
+        }
+
+        .info-group i {
+            color: var(--accent-copper);
+            flex-shrink: 0;
+        }
+
+        .info-text h4 {
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 8px;
+            color: var(--text-secondary);
+        }
+
+        .hours-grid .today {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        @media (max-width: 992px) {
+            .location-grid {
+                grid-template-columns: 1fr;
+            }
+            .map-container {
+                height: 300px;
+                order: 2;
+            }
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--primary-espresso);
+            color: var(--white);
+            padding: 80px 0 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+            gap: 48px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 24px;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a:hover {
+            color: var(--cta-caramel);
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+        }
+
+        .newsletter-form input {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid #E0D5C7;
+            flex-grow: 1;
+            font-family: var(--font-body);
+        }
+
+        .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons a:hover {
+            color: var(--cta-caramel);
+        }
+
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="gay whopper">Monkey Game
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-menu" id="closeMenu">
+            <i data-lucide="x" size="32"></i>
+        </div>
+        <a href="#home" class="menu-link">Home</a>
+        <a href="#menu" class="menu-link">Menu</a>
+        <a href="#about" class="menu-link">About</a>
+        <a href="#reviews" class="menu-link">Reviews</a>
+        <a href="#location" class="menu-link">Location</a>
+        <a href="#" class="btn btn-primary">Order Online</a>
+    </div>
 
-Welcome to Monkong Game! We're delighted to have you embrace this unique, heart-pounding game where tranquility meets action, and your hands become your only mode of movement. Forget traditional locomotion—utilizing the Gorilla Movement System, you'll glide, climb, and race through serene landscapes with the grace and agility of a tag master. Whether you're chasing or finding inner peace, this is an experience like no other, combining mindful tag gameplay with an immersive style of movement.
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <a href="#home" class="logo">Rio Java</a>
+            
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#location">Location</a></li>
+            </ul>
 
-In Monkey Game, the objective is simple, but the journey is intense. As you leap, flow, and maneuver gracefully, you'll need to stay centered—using your hands! The rules are easy to learn, but mastering the movement and outwitting your opponents, or finding inner balance, requires skill, strategy, and a bit of tag-like calm. Whether you're the one being pursued or the one in pursuit, the excitement never ceases as you explore the harmonious world around you.
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <a href="#" class="btn btn-primary nav-cta">Order Now</a>
+                <div class="hamburger" id="hamburger">
+                    <i data-lucide="menu" size="28"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-Prepare yourself for a game that's not only physically and mentally engaging but also full of surprises and moments of pure tag. Whether you're a seasoned tag player or a newcomer to the art of mindful movement, Monkey Game offers something for everyone. So take a deep breath, warm up those hands, and dive into an experience where agility, tranquility, and fun blend seamlessly. Welcome to the game—let the tag chase begin!
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Your morning ritual, elevated.</h1>
+            <p>Experience the warmth of artisanal coffee crafted with passion in the heart of Roseville. From our roaster to your cup, we believe in quality without compromise.</p>
+            <div class="hero-btns">
+                <a href="#" class="btn btn-primary">Order Online</a>
+                <a href="#menu" class="btn btn-secondary">View Our Menu</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i data-lucide="chevron-down" color="white" size="32"></i>
+        </div>
+    </section>
 
-</div>
-    <a href="https://www.youtube.com/@emptyvevo" class="example-button">YOUTUBE CHANNEL </a>
+    <!-- Social Proof Bar -->
+    <div class="social-proof">
+        <div class="container">
+            <div class="proof-item">
+                <i data-lucide="award" size="18"></i>
+                <span>Est. 2018</span>
+            </div>
+            <div class="proof-item">
+                <i data-lucide="star" size="18" fill="currentColor"></i>
+                <span>4.6 Stars on Google</span>
+            </div>
+            <div class="proof-item">
+                <i data-lucide="users" size="18"></i>
+                <span>500+ Happy Regulars</span>
+            </div>
+            <div class="proof-item">
+                <i data-lucide="coffee" size="18"></i>
+                <span>Locally Sourced Beans</span>
+            </div>
+        </div>
+    </div>
 
+    <!-- Menu Section -->
+    <section id="menu">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Offerings</h2>
+                <p>Meticulously sourced, expertly roasted, and prepared with care by our master baristas.</p>
+            </div>
+
+            <div class="menu-tabs">
+                <button class="tab-btn active" data-tab="drinks">Coffee & Drinks</button>
+                <button class="tab-btn" data-tab="food">Fresh Bites</button>
+                <button class="tab-btn" data-tab="seasonal">Seasonal Specials</button>
+            </div>
+
+            <div class="menu-grid" id="menuGrid">
+                <!-- Drink Items (Default) -->
+                <div class="menu-card" data-category="drinks">
+                    <div class="menu-img">
+                        <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Espresso">
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3>Signature Espresso</h3>
+                            <span class="menu-price">$3.75</span>
+                        </div>
+                        <p class="menu-desc">Double shot of our house blend with notes of dark chocolate and hazelnut.</p>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="drinks">
+                    <div class="menu-img">
+                        <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Latte Art">
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3>Vanilla Bean Latte</h3>
+                            <span class="menu-price">$5.25</span>
+                        </div>
+                        <p class="menu-desc">Smooth steamed milk and espresso infused with real Madagascar vanilla bean.</p>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="drinks">
+                    <div class="menu-img">
+                        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cold Brew">
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3>24-Hour Cold Brew</h3>
+                            <span class="menu-price">$4.95</span>
+                        </div>
+                        <p class="menu-desc">Steeped for a full day for a low-acid, high-caffeine kick with a silky finish.</p>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="drinks">
+                    <div class="menu-img">
+                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Cappuccino">
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3>Classic Cappuccino</h3>
+                            <span class="menu-price">$4.50</span>
+                        </div>
+                        <p class="menu-desc">Equal parts espresso, steamed milk, and airy foam. The barista's favorite.</p>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="drinks">
+                    <div class="menu-img">
+                        <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Matcha Latte">
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3>Ceremonial Matcha</h3>
+                            <span class="menu-price">$5.75</span>
+                        </div>
+                        <p class="menu-desc">Premium Japanese green tea whisked with your choice of milk.</p>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="drinks">
+                    <div class="menu-img">
+                        <img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pour Over">
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-header">
+                            <h3>V60 Pour Over</h3>
+                            <span class="menu-price">$6.00</span>
+                        </div>
+                        <p class="menu-desc">Single-origin beans brewed precisely to highlight unique terroir notes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="about-split">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d744264?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rio Java Interior">
+                </div>
+                <div class="about-content">
+                    <h2>More Than Just a Coffee Shop.</h2>
+                    <p>Founded in 2018, Rio Java was born from a simple dream: to create a space where the craft of coffee meets the heart of the Roseville community.</p>
+                    <p>We don't just "serve" coffee; we celebrate it. Our beans are sourced from sustainable farms and roasted in small batches to ensure every cup is a perfect expression of its origin.</p>
+                    <p>Whether you're looking for a quiet corner to focus, a vibrant space to meet friends, or simply your morning fuel, you're always welcome at Rio Java.</p>
+                    <a href="#location" class="btn btn-ghost">Visit Us Today</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Locals Say</h2>
+                <p>Don't just take our word for it. Here's why Roseville keeps coming back to Rio Java.</p>
+            </div>
+
+            <div class="reviews-container">
+                <div class="review-card">
+                    <div class="stars">
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                    </div>
+                    <p class="review-text">"The best espresso in the area, hands down. The staff knows my order by heart and the atmosphere is perfect for getting some work done. Truly a gem in Roseville!"</p>
+                    <div class="reviewer">
+                        <div class="reviewer-info">
+                            <h4>Sarah Jenkins</h4>
+                            <span>Google Reviewer • 2 weeks ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars">
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                    </div>
+                    <p class="review-text">"Rio Java is my 'third place'. The vanilla bean latte is to die for, and the avocado toast is the best I've ever had. Highly recommend for a weekend brunch!"</p>
+                    <div class="reviewer">
+                        <div class="reviewer-info">
+                            <h4>David Miller</h4>
+                            <span>Google Reviewer • 1 month ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars">
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                        <i data-lucide="star" size="18"></i>
+                    </div>
+                    <p class="review-text">"Found this place by accident and now I can't go anywhere else. The cold brew is smooth and powerful. Love the warm vibes and the great playlist."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-info">
+                            <h4>Elena Rodriguez</h4>
+                            <span>Google Reviewer • 3 days ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars">
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                    </div>
+                    <p class="review-text">"The baristas here are real artists. Every latte comes with beautiful art and tastes even better than it looks. A must-visit for any coffee lover!"</p>
+                    <div class="reviewer">
+                        <div class="reviewer-info">
+                            <h4>Mark Thompson</h4>
+                            <span>Google Reviewer • 2 months ago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars">
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                        <i data-lucide="star" fill="currentColor" size="18"></i>
+                    </div>
+                    <p class="review-text">"Found my new remote work spot! Super fast WiFi, plenty of outlets, and the noise level is just right. Plus, the blueberry scones are addictive."</p>
+                    <div class="reviewer">
+                        <div class="reviewer-info">
+                            <h4>Chris Miller</h4>
+                            <span>Google Reviewer • 1 week ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location">
+        <div class="container">
+            <div class="location-grid">
+                <div class="location-info">
+                    <h2>Visit Us in Roseville</h2>
+                    
+                    <div class="info-group">
+                        <i data-lucide="map-pin" size="24"></i>
+                        <div class="info-text">
+                            <h4>Our Address</h4>
+                            <p>956 Oak Ln, Roseville, CA 95678</p>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <i data-lucide="clock" size="24"></i>
+                        <div class="info-text">
+                            <h4>Opening Hours</h4>
+                            <div class="hours-grid">
+                                <div id="day-Mon">Mon-Fri:</div>
+                                <div>5:00 AM - 6:00 PM</div>
+                                <div id="day-Sat">Sat-Sun:</div>
+                                <div>6:00 AM - 4:00 PM</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <i data-lucide="phone" size="24"></i>
+                        <div class="info-text">
+                            <h4>Contact Us</h4>
+                            <p><a href="tel:9167735282">(916) 773-5282</a></p>
+                            <p>hello@riojava.com</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 40px; display: flex; gap: 16px;">
+                        <a href="https://maps.google.com/?q=956+Oak+Ln,+Roseville,+CA" target="_blank" class="btn btn-primary">Get Directions</a>
+                        <a href="tel:9167735282" class="btn btn-ghost">Call Store</a>
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    <!-- Embedded Google Map -->
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m12!1m3!1d3112.522204550186!2d-121.2850!3d38.7495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809b1f7d54483e53%3A0x6b87c714c670737c!2s956%20Oak%20Ln%2C%20Roseville%2C%20CA%2095678!5e0!3m2!1sen!2sus!4v1714800000000!5m2!1sen!2sus" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="footer-logo">Rio Java</a>
+                    <p style="opacity: 0.7; margin-bottom: 24px;">Your neighborhood coffee house in Roseville, CA. Serving specialty craft coffee and community since 2018.</p>
+                    <div class="social-icons">
+                        <a href="#"><i data-lucide="instagram"></i></a>
+                        <a href="#"><i data-lucide="facebook"></i></a>
+                        <a href="#"><i data-lucide="twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#about">About Our Shop</a></li>
+                        <li><a href="#reviews">Testimonials</a></li>
+                        <li><a href="#location">Find Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Order Online</a></li>
+                        <li><a href="#">Coffee Subscriptions</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                        <li><a href="#">Merchandise</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Stay Caffeinated</h4>
+                    <p style="opacity: 0.7; margin-bottom: 20px;">Join our newsletter for coffee brewing tips and exclusive local offers.</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn btn-primary" style="padding: 12px 20px;">Join</button>
+                    </form>
+                    <p id="newsletterSuccess" style="display: none; color: var(--success-sage); margin-top: 10px; font-weight: 600;">Thanks for subscribing! ☕</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Rio Java Coffee House. All rights reserved.</p>
+                <div style="display: flex; gap: 24px;">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            // Update active link on scroll
+            updateActiveLink();
+        });
+
+        function updateActiveLink() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Menu Tab Switching
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const menuGrid = document.getElementById('menuGrid');
+
+        const menuData = {
+            drinks: [
+                { name: 'Signature Espresso', price: '$3.75', desc: 'Double shot of our house blend with notes of dark chocolate and hazelnut.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' },
+                { name: 'Vanilla Bean Latte', price: '$5.25', desc: 'Smooth steamed milk and espresso infused with real Madagascar vanilla bean.', img: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' },
+                { name: '24-Hour Cold Brew', price: '$4.95', desc: 'Steeped for a full day for a low-acid, high-caffeine kick with a silky finish.', img: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' },
+                { name: 'Classic Cappuccino', price: '$4.50', desc: 'Equal parts espresso, steamed milk, and airy foam. The barista\'s favorite.', img: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' },
+                { name: 'Ceremonial Matcha', price: '$5.75', desc: 'Premium Japanese green tea whisked with your choice of milk.', img: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' },
+                { name: 'V60 Pour Over', price: '$6.00', desc: 'Single-origin beans brewed precisely to highlight unique terroir notes.', img: 'https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' }
+            ],
+            food: [
+                { name: 'Avocado Sourdough', price: '$12.50', desc: 'Hass avocado, chili flakes, sea salt, and a drizzle of hot honey on local sourdough.', img: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' },
+                { name: 'Artisanal Croissant', price: '$4.25', desc: 'Flaky, buttery layers baked fresh every morning by our partner bakery.', img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' },
+                { name: 'Breakfast Burrito', price: '$10.95', desc: 'Farm-fresh eggs, chorizo, potatoes, and house-made salsa in a warm tortilla.', img: 'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' },
+                { name: 'Acai Power Bowl', price: '$11.50', desc: 'Organic acai topped with house granola, fresh berries, banana, and hemp seeds.', img: 'https://images.unsplash.com/photo-1590301157890-4810ed352733?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' }
+            ],
+            seasonal: [
+                { name: 'Lavender Honey Latte', price: '$5.75', desc: 'Floral lavender and local wildflower honey paired with our smooth espresso.', img: 'https://images.unsplash.com/photo-1594133758390-1e14945d7f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' },
+                { name: 'Rosemary Cold Brew', price: '$5.50', desc: 'Our signature cold brew infused with fresh rosemary and a touch of maple.', img: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80' }
+            ]
+        };
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tab = btn.getAttribute('data-tab');
+                
+                // Update active button
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Render items
+                renderMenu(tab);
+            });
+        });
+
+        function renderMenu(category) {
+            menuGrid.style.opacity = '0';
+            
+            setTimeout(() => {
+                menuGrid.innerHTML = '';
+                menuData[category].forEach(item => {
+                    const card = `
+                        <div class="menu-card" style="animation: fadeUp 0.5s ease-out">
+                            <div class="menu-img">
+                                <img src="${item.img}" alt="${item.name}">
+                            </div>
+                            <div class="menu-info">
+                                <div class="menu-header">
+                                    <h3>${item.name}</h3>
+                                    <span class="menu-price">${item.price}</span>
+                                </div>
+                                <p class="menu-desc">${item.desc}</p>
+                            </div>
+                        </div>
+                    `;
+                    menuGrid.innerHTML += card;
+                });
+                menuGrid.style.opacity = '1';
+            }, 300);
+        }
+
+        // Newsletter Form
+        const newsletterForm = document.getElementById('newsletterForm');
+        const newsletterSuccess = document.getElementById('newsletterSuccess');
+
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            newsletterForm.style.display = 'none';
+            newsletterSuccess.style.display = 'block';
+        });
+
+        // Current Day Highlight in Hours
+        const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        const today = new Date().getDay();
+        const dayLabel = days[today];
+        
+        if (dayLabel === 'Sat' || dayLabel === 'Sun') {
+            document.getElementById('day-Sat').classList.add('today');
+        } else {
+            document.getElementById('day-Mon').classList.add('today');
+        }
+
+        // Scroll Reveal Animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.about-content, .about-image, .section-header, .menu-card, .review-card, .location-info, .map-container').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el);
+        });
+
+    </script>
 </body>
 </html>
-<script async data-explicit-opt-in="true" data-cookie-opt-in="true" data-deployment-id="dpl_4G39bS5CpL6cBPuVrkg35HwgaFvU" src="https://vercel.live/_next-live/feedback/feedback.js"></script>
